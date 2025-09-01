@@ -1,0 +1,37 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Unzip project
+        run: unzip -o lui-bambini-sales-system.zip -d app
+
+      - name: Install dependencies
+        working-directory: app/lui-bambini-sales-system
+        run: npm install
+
+      - name: Build project
+        working-directory: app/lui-bambini-sales-system
+        run: |
+          echo "REACT_APP_SUPABASE_URL=https://znxzjxhvivvacbuwshxgb.supabase.co" >> .env
+          echo "REACT_APP_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpueHpqaHhpdnZhY2J3dXNoeGdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3NTI1NjksImV4cCI6MjA3MjMyODU2OX0.z8kSh0CnrIBJ4yzeY9wsFfgor8ToUiv33GDM1cwU-iw" >> .env
+          npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: app/lui-bambini-sales-system/build
