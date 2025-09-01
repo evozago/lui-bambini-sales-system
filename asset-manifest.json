@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/lui-bambini-sales-system/static/css/main.7ae54d66.css",
+    "main.js": "/lui-bambini-sales-system/static/js/main.e671e784.js",
+    "index.html": "/lui-bambini-sales-system/index.html",
+    "main.7ae54d66.css.map": "/lui-bambini-sales-system/static/css/main.7ae54d66.css.map",
+    "main.e671e784.js.map": "/lui-bambini-sales-system/static/js/main.e671e784.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7ae54d66.css",
+    "static/js/main.e671e784.js"
+  ]
+}
